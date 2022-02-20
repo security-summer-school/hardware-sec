@@ -42,6 +42,10 @@ This brings us to the subject of this (mini-)track: what security measures are i
 * [Hardware Isolation](hardware-isolation/README.md)
 * [Trusted Execution Environments](trusted-execution-environments/README.md)
 
+There is also a folder, `helpers`, that contains information about topics that are not the subject of this track, but are needed to understand some of the concepts described here.
+If you are unsure about you knowledge, or want some reminders while going through the sessions, feel free to read the helpers.
+Where needed, practical work items may be included.
+
 ### Session Folder Structure
 
 A session folder consists of:
