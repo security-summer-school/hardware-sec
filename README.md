@@ -36,6 +36,10 @@ If the hardware is insecure, everything that relies upon it will also be insecur
 How can an operating system guarantee the security of a system, if we can alter what instructions are executed by the CPU?
 This brings us to the subject of this (mini-)track: what security measures are implemented in the hardware, how we can use them and how easy is it to break them.
 
+**Warning:** There will be a lot of theory, and less breaking stuff, unlike the other tracks.
+This track is mostly about learning how to use the hardware to better defend a system.
+There will be tasks to use the described features, but breaking them requires a lot of work and access to a physical hardware, in most cases.
+
 ## Sessions
 
 * [Hardware Computing](hardware-computing/README.md)
