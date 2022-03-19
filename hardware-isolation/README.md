@@ -12,4 +12,6 @@
 
 ### Protection Keys
 
+### IOMMU
+
 ## Enclaves and Trusted Execution Environments
