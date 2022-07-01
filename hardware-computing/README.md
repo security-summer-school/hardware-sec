@@ -218,27 +218,37 @@ In order to use a key to sign a certificate (or anything else) with RSA, the key
 In TPM, a RSA key-pair is an object, and a child of a primary object.
 The first step is to create a primary object, using the following command: (must be root)
 
-```tpm2_createprimary -C e -c primary.ctx```
+```
+tpm2_createprimary -C e -c primary.ctx
+```
 
 The `-C e` argument creates the primary object under the `TPM_RH_ENDORSEMENT` hierarchy, which is controlled by the administrator (the user).
 The `-c` option is used to provide a place to store the context of the object, which is used to identify that object in the future.
 
 Then, we create a child object, the RSA key-pair.
 
-```tpm2_create -G rsa -u rsa.pub -r rsa.priv -C primary.ctx```
+```
+tpm2_create -G rsa -u rsa.pub -r rsa.priv -C primary.ctx
+```
 
 Before we can use the key-pair, we must load it into the TPM.
 
-```tpm2_load -C primary.ctx -u rsa.pub -r rsa.priv -c rsa.ctx```
+```
+tpm2_load -C primary.ctx -u rsa.pub -r rsa.priv -c rsa.ctx
+```
 
 Now we can use the loaded key-pair to sign (encrypt) and verify the signature of any file.
 
-```tpm2_sign -c rsa.ctx -g sha256 -o sig.rssa sign_me.dat```
+```
+tpm2_sign -c rsa.ctx -g sha256 -o sig.rssa sign_me.dat
+```
 
 The last command generates a signed file, `sig.rssa`.
 To verify that the signature is valid, we can use
 
-```tpm2_verifysignature -c rsa.ctx -g sha256 -s sig.rssa -m sign_me.dat```
+```
+tpm2_verifysignature -c rsa.ctx -g sha256 -s sig.rssa -m sign_me.dat
+```
 
 If the signature is valid, no output will be returned.
 Try to modify `sign_me.dat`, and recheck the signature.
@@ -260,27 +270,37 @@ TPM allows the user to seal data inside the hardware module.
 The maximum size of the data that can be sealed is 128 bytes.
 To seal data, we use the following command.
 
-```tpm2_create -C primary.ctx -i seal_me.dat -u seal.pub -r seal.priv -c seal.ctx```
+```
+tpm2_create -C primary.ctx -i seal_me.dat -u seal.pub -r seal.priv -c seal.ctx
+```
 
 We can add an authorization policy to the sealed object, based on the `Platform Configuration Registers` - PCR.
 Those registers are set up at boot time, and can be used to verify that the system is a valid state, before being able to unseal an object.
 
 To read the PCR, we can use 
 
-```tpm2_pcrread -o pcr.bin sha256:0,1,2,3```
+```
+tpm2_pcrread -o pcr.bin sha256:0,1,2,3
+```
 
 This command reads from the registers from 0 to 4, from the `sha256` bank of registers, and stores the results in `pcr.bin`.
 Then we can create a policy, that allows unsealing only if `sha256:0,1,2,3` are in the state described in `pcr.bin`.
 
-```tpm2_createpolicy -Q --policy-pcr -l sha256:0,1,2,3 -f pcr.bin -L pcr.policy```
+```
+tpm2_createpolicy -Q --policy-pcr -l sha256:0,1,2,3 -f pcr.bin -L pcr.policy
+```
 
 Then, seal the data using the new policy
 
-```tpm2_create -C primary.ctx -i seal_me.dat -u seal.pub -r seal.priv -L pcr.policy -c seal.ctx```
+```
+tpm2_create -C primary.ctx -i seal_me.dat -u seal.pub -r seal.priv -L pcr.policy -c seal.ctx
+```
 
 To unseal the data, we can use
 
-```tpm2_unseal -c seal.ctx -p pcr:sha256:0,1,2,3```
+```
+tpm2_unseal -c seal.ctx -p pcr:sha256:0,1,2,3
+```
 
 You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/tpm-seal).
 
