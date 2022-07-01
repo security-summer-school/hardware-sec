@@ -11,7 +11,7 @@ then
 		echo "qemu-user not installed; exiting"
 		exit
 	fi
-	qemu-x86_64 -cpu max,+aes ./main
+	qemu-x86_64 -cpu max ./aes_in_c
 else
-	./main
+	./aes_in_c
 fi
