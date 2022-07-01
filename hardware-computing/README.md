@@ -4,26 +4,27 @@
 
  * [Prerequisites](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#prerequisites)
  * [Introduction](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#introduction)
- * [AES Instruction Sets](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#aes-instruction-sets)
-   * [Intel AES-NI](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#intel-aes-ni)
-     * [Challenge: AES in C]()
-     * [Challenge: AES in ASM]()
-   * [ARM Cryptography Extensions](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#arm-cryptography-extensions)
- * [Hardware Random Number Generation](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#hardware-random-number-generation)
-     * [RDRAND]()
-     * [RDSEED]()
-	* [Challenge: RDRAND and RDSEED in Assembly]()
-     * [GCC Compiler Intrinsics]()
-	* [Challenge: RDRAND and RDSEED in C]()
-	* [Challenge: Performance Evaluation]()
-     * [When to Use RDRAND and RDSEED?]()
-  * [Trusted Computing]()
-     * [Trustsed Platorm Module]()
-        * [Exploiting the TPM]()
-	* [Tutorial: Sign with RSA]()
-	* [Challenge: AES Decryption]()
-	* [Tutorial: Seal Arbitrary Data]()
-
+ * [AES Instruction Sets](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#aes-instruction-sets)
+   * [Intel AES-NI](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#intel-aes-ni)
+     * [Challenge: AES in C](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#1-challenge-aes-in-c)
+     * [Challenge: AES in ASM](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#2-challenge-aes-in-asm)
+   * [ARM Cryptography Extensions](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#arm-cryptography-extensions)
+ * [Hardware Random Number Generation](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#hardware-random-number-generation)
+     * [RDRAND](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#rdrand)
+     * [RDSEED](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#rdseed)
+	* [Challenge: RDRAND and RDSEED in Assembly](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#challenge-rdrand-and-rdseed-in-assembly)
+     * [GCC Compiler Intrinsics](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#gcc-compiler-intrinsics)
+	* [Challenge: RDRAND and RDSEED in C](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#challenge-rdrand-and-rdseed-in-c)
+	* [Challenge: Performance Evaluation](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing#challenge-performance-evaluation)
+     * [When to Use RDRAND and RDSEED?](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#when-to-use-rdrand-and-rdseed)
+  * [Trusted Computing](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#trusted-computing)
+     * [Trustsed Platorm Module](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#trusted-platform-module---tpm)
+        * [Exploiting the TPM](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#exploiting-the-tpm)
+	* [Tutorial: Sign with RSA](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#tutorial-sign-with-rsa)
+	* [Challenge: AES Decryption](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#challenge-aes-decryption)
+	* [Tutorial: Seal Arbitrary Data](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#tutorial-seal-arbitrary-data)
+  * [Resources](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#resources)
+  * [Further Reading](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#further-reading)
 
 ## Prerequisites
 
@@ -89,10 +90,14 @@ The tasks for this part will be straight-forward:
 You are provided with an implementation of AES encryption, in C.
 Complete the code with the decryption implementation, obtain the flag and submit it.
 
+You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/aes-in-c).
+
 #### 2. Challenge: AES in ASM
 
 You are provided with an implementation of AES encryption, in Assembly.
 Complete the code with the decryption implementation, obtain the flag and submit it.
+
+You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/aes-in-assembly).
 
 ### ARM Cryptography Extensions
 
@@ -143,7 +148,9 @@ If `RDRAND` can be theoretically predicted, Intel guarantees that the number gen
 
 This task is very easy: generate some random numbers using the `rdrand` and `rdseed` instructions, in assembly.
 Use the `$ make run` command to run your program.
-It emulates the rdrand and rdseed commands, in case they are not supported on your system. 
+It emulates the rdrand and rdseed commands, in case they are not supported on your system.
+
+You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/rdrand-and-rdseed-in-assembly).
 
 ### GCC Compiler Intrinsics
 
@@ -154,9 +161,13 @@ Those are `_rdrand<size>_step()` and `_rdseed<size>_step()`, where "size" can be
 
 Again, a simple task. Generate some random numbers in C, using the compiler [intrinsic functions](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#othertechs=RDRAND,RDSEED).
 
+You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/rdrand-and-rdseed-in-c).
+
 #### Challenge: Performance Evaluation
 
 Read some values from `/dev/urandom`, and compare the time it takes to do so with the time it takes to read the same number of values using `rdrand`.
+
+You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/performance-evaluation).
 
 ### Exploiting RDRAND and RDSEED?
 
@@ -194,6 +205,7 @@ The current version of the TPM is 2.0, and is mandatory in order to run some sof
 The user can interact with the TPM using special libraries.
 For today's session, we will use bash commands, and the [tpm2-tools](https://github.com/tpm2-software/tpm2-tools) suite.
 Particularly usefull is the [man folder](https://github.com/tpm2-software/tpm2-tools/tree/master/man).
+You can use a [Docker image](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing/resources/tpm-docker), with the tools already installed.
 
 #### Exploiting the TPM
 
@@ -232,12 +244,16 @@ To verify that the signature is valid, we can use
 If the signature is valid, no output will be returned.
 Try to modify `sign_me.dat`, and recheck the signature.
 
+You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/tpm-rsa).
+
 #### Challenge: AES Decryption
 
 Someone left an encrypted file here, along with the AES key that was used.
 Decrypt the file, find the flag and submit it.
 
 Use `man tpm2` to find the commands needed.
+
+You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/tpm-aes).
 
 #### Tutorial: Seal Arbitrary Data
 
@@ -267,17 +283,26 @@ To unseal the data, we can use
 
 ```tpm2_unseal -c seal.ctx -p pcr:sha256:0,1,2,3```
 
+You can find the task resources [here](https://github.com/security-summer-school/hardware-sec/tree/hardware-computing/hardware-computing/activities/tpm-seal).
+
 ## Resources
 
 [Intel AES-NI White Paper](https://www.intel.com/content/dam/doc/white-paper/advanced-encryption-standard-new-instructions-set-paper.pdf)
+
 [Intel AES-NI Intrinsic Functions](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#othertechs=AES)
 
 ## Further Reading
 
 [Windows ARM AES Intrinsics](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.arm.aes?view=net-6.0)
+
 [Linux ARM AES Intrinsics](https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:@navigationhierarchiesinstructiongroup=[Cryptography,AES])
+
 [CrossTalk Paper](https://download.vusec.net/papers/crosstalk_sp21.pdf)
+
 [TPM Local Security Vulnerability - CVE-2018-6622](https://www.cvedetails.com/cve/CVE-2018-6622/)
+
 [TPM-FAIL - TPM Timing Attack - CVE-2019-11090 and CVE-2019-16863](https://tpm.fail/tpmfail.pdf)
+
 [TPM Device Driver Information Disclosure Vunerability - CVE 2021-1656](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1656)
+
 [Infineon TPM Vulnerability - CVE-2017-15361](https://www.dell.com/support/kbdoc/ro-ro/000144419/infineon-trusted-platform-module-tpm-vulnerability-cve-2017-15361-impact-status-on-dell-products)
