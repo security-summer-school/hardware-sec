@@ -59,9 +59,8 @@ A hardware implementation has one more benefit: it is more secure.
 If done by software, while being secure against brute-force attacks, AES can be broken using side-channel attacks.
 The hardware implementation is much harder to be affected by such attacks.
 
-Intel, AMD, ARM, Risc-V SPARC, IBM have implemented AES instruction sets in hardware.
-We will mailny discuss the implentations from Intel, and mention the one from ARM.
-If interested in the implementations from other architectures, you can find them in the [Further Reading](https://github.com/security-summer-school/hardware-sec/tree/main/hardware-computing#further-reading) section.
+Intel, AMD, ARM, Risc-V, SPARC, IBM have AES instruction sets implemented in hardware.
+We will mailny discuss the implentations from Intel, and mention the one from ARM.=
 
 ### Intel AES-NI
 
@@ -291,11 +290,15 @@ You can find the task resources [here](https://github.com/security-summer-school
 
 [Intel AES-NI Intrinsic Functions](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#othertechs=AES)
 
+[TPM 2.0 Specification](https://trustedcomputinggroup.org/resource/tpm-library-specification/)
+
 ## Further Reading
 
 [Windows ARM AES Intrinsics](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.arm.aes?view=net-6.0)
 
 [Linux ARM AES Intrinsics](https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:@navigationhierarchiesinstructiongroup=[Cryptography,AES])
+
+[Intel DRNG Implementation](https://www.intel.com/content/dam/develop/external/us/en/documents/441-intel-r-drng-software-implementation-guide-final-aug7.pdf)
 
 [CrossTalk Paper](https://download.vusec.net/papers/crosstalk_sp21.pdf)
 
