@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdio.h>
-#include <wmmintrin.h>  //for AES-NI intrinsics
+#include <wmmintrin.h>  /* for AES-NI intrinsics */
 
 #define AES_128_key_exp(k, rcon) aes_128_key_expansion(k, _mm_aeskeygenassist_si128(k, rcon))
 
@@ -34,10 +34,11 @@ static void aes128_load_key(uint8_t *enc_key, __m128i *key_schedule)
 {
 	aes128_load_key_enc_only(enc_key, key_schedule);
 
-	// generate decryption keys in reverse order.
-	// k[10] is shared by last encryption and first decryption rounds
-	// k[0] is shared by first encryption round and last decryption round (and is the original user key)
-	// For some implementation reasons, decryption key schedule is NOT the encryption key schedule in reverse order
+	/* generate decryption keys in reverse order.
+	 * k[10] is shared by last encryption and first decryption rounds
+	 * k[0] is shared by first encryption round and last decryption round (and is the original user key)
+	 * For some implementation reasons, decryption key schedule is NOT the encryption key schedule in reverse order
+	 */
 	for (int i = 9; i >= 1; i--)
 		key_schedule[20 - i] = _mm_aesimc_si128(key_schedule[i]);
 }
