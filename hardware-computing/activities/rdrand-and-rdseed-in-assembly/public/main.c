@@ -14,8 +14,7 @@ int main(void)
 	unsigned int rand_int;
 	unsigned short rand_short;
 
-	/* TODO: print the random values
-	 */
+	/* TODO: print the random values */
 
 	return 0;
 }

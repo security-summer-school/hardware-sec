@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <immintrin.h> // the compiler intrinsic functions
+#include <immintrin.h> /* the compiler intrinsic functions */
 
 void get_rdrand(void)
 {

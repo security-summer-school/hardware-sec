@@ -3,7 +3,7 @@ CFLAGS=-march=native
 ASM=nasm
 ASMFLAGS=-f elf64
 
-.PHONY : all
+.PHONY : all clean
 
 all: main
 

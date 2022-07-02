@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-march=native
 
-.PHONY : all
+.PHONY : all run clean
 
 all: main
 

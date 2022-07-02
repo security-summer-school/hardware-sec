@@ -43,8 +43,8 @@ In this session we will explore some of those:
  * Random number generation
 
 After studying these concepts, we have one more topic: can we trust the hardware?
-Many people posed that question, including tech giants.
-Those questions resulted in the creation of the `Trusted Computing` concept.
+Many people have posed this question, including tech giants.
+Those questions resulted in the creation of the **Trusted Computing** concept.
 We'll see what it is and how it is implemented. 
 
 ## AES Instruction Sets
@@ -128,7 +128,7 @@ The values returned by those RNGs can be read using the `RDRAND` and `RDSEED` in
 
 `RDRAND` is the first implemented instruction on the Intel CPUs.
 At the moment of its apparition, it wasn't secure, as it could be intercepted by side-channel attacks.
-An example of attack is the CrossTalk attack, designated as [CVE-2020-0543](https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00320.html).
+One such attack is the _CrossTalk_, designated as [CVE-2020-0543](https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00320.html).
 The reported vulnerabilities were patched, and `RDRAND` is considered secure nowadays. 
 
 Intel guarantees that the generated random number cannot be predicted by an attacker that has finite resources.
@@ -177,14 +177,14 @@ Contact your trainer for details on how to do it.
 
 ### When to Use RDRAND and RDSEED?
 
-There are software solutions much faster than the hardware RNGs provided by Intel, so why use them?
+There are software solutions that are much faster than the hardware RNGs provided by Intel, so why use them?
 The RDRAND and RDSEED instructions perform better when cryptographically secure random numbers are needed.
 
 ## Trusted Computing
 
-The concept of `Trusted Computing` was introduced by Trusted Computing Group, and it aims to give the hardware control over waht software can be run on it, by being able to refuse to run unsigned software.
+The concept of **Trusted Computing** was introduced by Trusted Computing Group, and it aims to give the hardware control over waht software can be run on it, by being able to refuse to run unsigned software.
 This enforcement means that the system will most of the times behave as expected.
-For a system to fall under the `Trusted Computing` standard, it needs to have some components:
+For a system to fall under the Trusted Computing standard, it needs to have some components:
   * secure input and output - the sensitive data must not be able to be intercepted by a third party
   * an endorsment key - a public / private key, created at manufacture time, used to prove the identity of the system; the private key must never leave the chip where it is stored
   * memory curtailing - the system must provide full isolation of some sensitive areas of memory, blocking even the Operating System from accessing them
@@ -194,12 +194,12 @@ For a system to fall under the `Trusted Computing` standard, it needs to have so
   * trusted third party - to maintain annonimity, a system will not communicate to another system that it's running verified hardware and software directly, as this may allow the receiver of this information to identify the sender.
   Instead, a third party will verify that the first system is non-altered, and will relate that to the second system
 
-All of those concepts are included on most of today's systems, using a hardware chip, called a `Trusted Platform Module` 	  
+All of those concepts are included on most of today's systems, using a hardware chip, called a **Trusted Platform Module**.	  
 
 ### Trusted Platform Module - TPM
 
 The TPM is ussually a chip, residing on the motherboard.
-It must implement the `Trusted Computing` standard, meaning that it must implement the 6 components from above.
+It must implement the Trusted Computing standard, meaning that it must implement the 6 components from above.
 The current version of the TPM is 2.0, and is mandatory in order to run some software, like Windows 10.
 The user can interact with the TPM using special libraries.
 For today's session, we will use bash commands, and the [tpm2-tools](https://github.com/tpm2-software/tpm2-tools) suite.
@@ -314,18 +314,18 @@ You can find the task resources [here](https://github.com/security-summer-school
 
 ## Further Reading
 
-[Windows ARM AES Intrinsics](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.arm.aes?view=net-6.0)
+1. [Windows ARM AES Intrinsics](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.intrinsics.arm.aes?view=net-6.0)
 
-[Linux ARM AES Intrinsics](https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:@navigationhierarchiesinstructiongroup=[Cryptography,AES])
+2. [Linux ARM AES Intrinsics](https://developer.arm.com/architectures/instruction-sets/intrinsics/#f:@navigationhierarchiesinstructiongroup=[Cryptography,AES])
 
-[Intel DRNG Implementation](https://www.intel.com/content/dam/develop/external/us/en/documents/441-intel-r-drng-software-implementation-guide-final-aug7.pdf)
+3. [Intel DRNG Implementation](https://www.intel.com/content/dam/develop/external/us/en/documents/441-intel-r-drng-software-implementation-guide-final-aug7.pdf)
 
-[CrossTalk Paper](https://download.vusec.net/papers/crosstalk_sp21.pdf)
+4. [CrossTalk Paper](https://download.vusec.net/papers/crosstalk_sp21.pdf)
 
-[TPM Local Security Vulnerability - CVE-2018-6622](https://www.cvedetails.com/cve/CVE-2018-6622/)
+5. [TPM Local Security Vulnerability - CVE-2018-6622](https://www.cvedetails.com/cve/CVE-2018-6622/)
 
-[TPM-FAIL - TPM Timing Attack - CVE-2019-11090 and CVE-2019-16863](https://tpm.fail/tpmfail.pdf)
+6. [TPM-FAIL - TPM Timing Attack - CVE-2019-11090 and CVE-2019-16863](https://tpm.fail/tpmfail.pdf)
 
-[TPM Device Driver Information Disclosure Vunerability - CVE 2021-1656](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1656)
+7. [TPM Device Driver Information Disclosure Vunerability - CVE 2021-1656](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-1656)
 
-[Infineon TPM Vulnerability - CVE-2017-15361](https://www.dell.com/support/kbdoc/ro-ro/000144419/infineon-trusted-platform-module-tpm-vulnerability-cve-2017-15361-impact-status-on-dell-products)
+8. [Infineon TPM Vulnerability - CVE-2017-15361](https://www.dell.com/support/kbdoc/ro-ro/000144419/infineon-trusted-platform-module-tpm-vulnerability-cve-2017-15361-impact-status-on-dell-products)

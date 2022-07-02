@@ -15,7 +15,7 @@ aes128_enc:
 
 	xor	rcx, rcx
 	xor	rax, rax
-	; AddRoundKey
+	; add round key
 	pxor	xmm1, [rdi + rax]
 	inc	rcx
 	add	rax, 16

@@ -1,25 +1,26 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdio.h>
-#include <wmmintrin.h>  //for AES-NI intrinsics
+#include <wmmintrin.h>	/* needed for AES-NI intrinsics */
 
 static inline void do_enc_block(__m128i *m, __m128i *k)
 {
-	// Encryption; the round keys are in k, the plain-text message is in m
-	// AddRoundKey
+	/* Encryption; the round keys are in k, the plain-text message is in m */
+
+	/* add round key */
 	*m = _mm_xor_si128(*m, k[0]);
 
 	for(int i = 1; i < 10; i++)
-		// SubBytes + ShiftRows + MixColumns + AddRoundKey
+		/* SubBytes + ShiftRows + MixColumns + AddRoundKey */
 		*m = _mm_aesenc_si128(*m, k[i]);
 	
-	// SubBytes + ShiftRows + AddRoundKey
+	/* SubBytes + ShiftRows + AddRoundKey */
 	*m = _mm_aesenclast_si128(*m, k[10]);
 }
 
 static inline void do_dec_block(__m128i *m, __m128i *k)
 {
-	// TODO: implement the decryption
+	/* TODO: implement the decryption */
 }
 
 #define AES_128_key_exp(k, rcon) aes_128_key_expansion(k, _mm_aeskeygenassist_si128(k, rcon))
@@ -52,31 +53,32 @@ static void aes128_load_key_enc_only(uint8_t *enc_key, __m128i *key_schedule)
 
 static void aes128_load_key(uint8_t *enc_key, __m128i *key_schedule)
 {
-	// generate encryption keys
+	/* generate encryption keys */
 	aes128_load_key_enc_only(enc_key, key_schedule);
 
-	// generate decryption keys in reverse order.
-	// k[10] is shared by last encryption and first decryption rounds
-	// k[0] is shared by first encryption round and last decryption round (and is the original user key)
-	// For some implementation reasons, decryption key schedule is NOT the encryption key schedule in reverse order
+	/* generate decryption keys in reverse order.
+	 * k[10] is shared by last encryption and first decryption rounds
+	 * k[0] is shared by first encryption round and last decryption round (and is the original user key)
+	 * For some implementation reasons, decryption key schedule is NOT the encryption key schedule in reverse order
+	 */
 	for (int i = 9; i >= 1; i--)
 		key_schedule[20 - i] = _mm_aesimc_si128(key_schedule[i]);
 }
 
 static void aes128_enc(__m128i *key_schedule, uint8_t *plain_text, uint8_t *cipher_text)
 {
-	// convert from 16 bytes char array to 16 bytes vectorial register
+	/* convert from 16 bytes char array to 16 bytes vectorial register */
 	__m128i m = _mm_loadu_si128((__m128i *)plain_text);
 
 	do_enc_block(&m, key_schedule);
 
-	// convert from 16 bytes vectorial register to 16 bytes char array
+	/* convert from 16 bytes vectorial register to 16 bytes char array */
 	_mm_storeu_si128((__m128i *)cipher_text, m);
 }
 
 static void aes128_dec(__m128i *key_schedule, uint8_t *cipher_text, uint8_t *plain_text)
 {
-	// TODO: implement the decryption
+	/* TODO: implement the decryption */
 }
 
 int main(void){
