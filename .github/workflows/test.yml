@@ -1,0 +1,17 @@
+name: Sync
+
+on:
+  workflow_dispatch: # on button click
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync
+        uses: tgymnich/fork-sync@v1.8.0
+        with:
+          owner: gabrielmocanu
+          base: main
+          head: main
+          repo: hardware-sec
